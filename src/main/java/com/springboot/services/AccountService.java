@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.springboot.entities.Account;
 import com.springboot.repositories.AccountRepository;
 
-
 @Service
 public class AccountService {
 	
@@ -23,6 +22,10 @@ public class AccountService {
 	public Account findById(Long id) {
 		Optional<Account> obj = repository.findById(id);
 		return obj.get();
+	}
+	
+	public Account insert(Account obj) {
+		return repository.save(obj);
 	}
 
 }

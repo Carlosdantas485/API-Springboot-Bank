@@ -17,12 +17,12 @@ import com.springboot.entities.enums.TipeAccount;
 @Entity
 @Table(name = "tb_account")
 public class Account implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private Integer tipeAccount;
 	private String name;
 	private Integer cpf;
@@ -78,14 +78,6 @@ public class Account implements Serializable {
 
 	public void setCpf(Integer cpf) {
 		this.cpf = cpf;
-	}
-
-	public double getLoanLimit() {
-		return transferLimit;
-	}
-
-	public void setLoanLimit(double transfernLimit) {
-		this.transferLimit = transfernLimit;
 	}
 
 	public double getBalance() {
