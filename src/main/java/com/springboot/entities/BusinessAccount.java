@@ -43,10 +43,7 @@ public class BusinessAccount extends Account{
 		this.fantasyName = fantasyName;
 	}
 	
-	public void loan(double amount) {
-		if(amount <= transferLimit)
-			deposit(amount);
-	}
+	
 	
 	
 }

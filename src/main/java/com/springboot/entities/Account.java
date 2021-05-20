@@ -1,14 +1,21 @@
 package com.springboot.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
+@Table(name = "tb_account")
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,6 +27,12 @@ public class Account implements Serializable {
 	private Integer cpf;
 	public double transferLimit;
 	protected double balance;
+	
+	//nao nao ficar em loop entre pedido e cliente
+	//impede um loop entre pedido e usuario
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
 	
 	public Account(){
 	}
@@ -68,30 +81,11 @@ public class Account implements Serializable {
 	public double getBalance() {
 		return balance;
 	}
-
-	public void withdraw(double amount) {
-		if(amount <= transferLimit && amount > 0)
-			balance -= amount;
-		
-		if(amount > transferLimit) 
-			System.out.println("Your limit is less than the value entered");
-		
-		else 
-			System.out.println("invalid amount for withdraw !");
-		
-		
+	
+	public List<Order> getOrders() {
+		return orders;
 	}
-	public void deposit(double amount) {
-		if(amount <= transferLimit && amount > 0 )
-			balance += amount;
-		
-		if(amount > balance)
-			System.out.println("Your limit is less than the value entered");
-			
-		else 
-			System.out.println("invalid amount for deposit !");
-	}
-		
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -113,6 +107,8 @@ public class Account implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 
 
 }
