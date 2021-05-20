@@ -1,5 +1,7 @@
 package com.springboot.entities;
 
+import com.springboot.entities.enums.TipeAccount;
+
 public class BusinessAccount extends Account{
 
 	private static final long serialVersionUID = 1L;
@@ -10,9 +12,9 @@ public class BusinessAccount extends Account{
 	public BusinessAccount(){
 	}
 
-	public BusinessAccount(Long id, String name, Integer cpf, double loanLimit, double balance, Integer cnpj,
+	public BusinessAccount(Long id,TipeAccount tipeAccount, String name, Integer cpf, double loanLimit, double balance, Integer cnpj,
 			String socialReason, String fantasyName) {
-		super(id, name, cpf, loanLimit, balance);
+		super(id,tipeAccount, name, cpf, loanLimit, balance);
 		this.cnpj = cnpj;
 		this.socialReason = socialReason;
 		this.fantasyName = fantasyName;

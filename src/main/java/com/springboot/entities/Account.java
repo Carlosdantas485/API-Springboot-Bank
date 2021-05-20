@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springboot.entities.enums.TipeAccount;
 
 
 @Entity
@@ -23,13 +24,14 @@ public class Account implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private TipeAccount tipeAccount;
 	private String name;
 	private Integer cpf;
 	public double transferLimit;
 	protected double balance;
 	
-	//nao nao ficar em loop entre pedido e cliente
-	//impede um loop entre pedido e usuario
+
+	//nao fica em loop entre pedido e o usuario
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
@@ -37,9 +39,10 @@ public class Account implements Serializable {
 	public Account(){
 	}
 	
-	public Account(Long id, String name, Integer cpf, double transferLimit, double balance) {
+	public Account(Long id,TipeAccount tipeAccount, String name, Integer cpf, double transferLimit, double balance) {
 		super();
 		this.id = id;
+		this.tipeAccount = tipeAccount;
 		this.name = name;
 		this.cpf = cpf;
 		this.transferLimit = transferLimit;
@@ -52,6 +55,14 @@ public class Account implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public TipeAccount getTipeAccount() {
+		return tipeAccount;
+	}
+
+	public void setTipeAccount(TipeAccount tipeAccount) {
+		this.tipeAccount = tipeAccount;
 	}
 
 	public String getName() {
