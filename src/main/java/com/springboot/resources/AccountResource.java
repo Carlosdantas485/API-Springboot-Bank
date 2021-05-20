@@ -12,9 +12,10 @@ import com.springboot.entities.Account;
 public class AccountResource {
 	@GetMapping
 	public ResponseEntity<Account> findAll(){
-	
-		Account Acc = new Account(1L, 987654321,"Carlos Dantas");
-		return ResponseEntity.ok().body(Acc);
-	}
+		
+		Account Account1 = new Account();
+
+		return ResponseEntity.ok().body(Account1);
+	}	
 }
 

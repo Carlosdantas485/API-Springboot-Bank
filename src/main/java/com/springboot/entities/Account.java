@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
 public class Account implements Serializable {
 
@@ -15,34 +16,29 @@ public class Account implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Integer cpf;
 	private String name;
-	
+	private Integer cpf;
+	public double transferLimit;
+	protected double balance;
 	
 	public Account(){
 	}
-
-	public Account(long id, Integer cpf, String name) {
+	
+	public Account(Long id, String name, Integer cpf, double transferLimit, double balance) {
+		super();
 		this.id = id;
-		this.cpf = cpf;
 		this.name = name;
-		
+		this.cpf = cpf;
+		this.transferLimit = transferLimit;
+		this.balance = balance;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
 	}
 
 	public String getName() {
@@ -53,6 +49,49 @@ public class Account implements Serializable {
 		this.name = name;
 	}
 
+	public Integer getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(Integer cpf) {
+		this.cpf = cpf;
+	}
+
+	public double getLoanLimit() {
+		return transferLimit;
+	}
+
+	public void setLoanLimit(double transfernLimit) {
+		this.transferLimit = transfernLimit;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void withdraw(double amount) {
+		if(amount <= transferLimit && amount > 0)
+			balance -= amount;
+		
+		if(amount > transferLimit) 
+			System.out.println("Your limit is less than the value entered");
+		
+		else 
+			System.out.println("invalid amount for withdraw !");
+		
+		
+	}
+	public void deposit(double amount) {
+		if(amount <= transferLimit && amount > 0 )
+			balance += amount;
+		
+		if(amount > balance)
+			System.out.println("Your limit is less than the value entered");
+			
+		else 
+			System.out.println("invalid amount for deposit !");
+	}
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;
