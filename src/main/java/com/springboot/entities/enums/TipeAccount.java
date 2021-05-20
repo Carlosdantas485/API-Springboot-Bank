@@ -1,8 +1,8 @@
 package com.springboot.entities.enums;
 
 public enum TipeAccount {
-		Account_Fisic_Person(1),
-		Account_Juridic_Person(2);
+		Fisic_Person(1),
+		Juridic_Person(2);
 		
 	
 	private int code;
