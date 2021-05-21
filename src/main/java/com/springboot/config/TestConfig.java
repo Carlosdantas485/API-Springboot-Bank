@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.springboot.entities.Account;
-import com.springboot.entities.BusinessAccount;
 import com.springboot.entities.Order;
 import com.springboot.entities.enums.TipeAccount;
 import com.springboot.repositories.AccountRepository;
