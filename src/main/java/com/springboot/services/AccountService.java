@@ -32,5 +32,21 @@ public class AccountService {
 		repository.deleteById(id);
 		
 	}
+	
+	public Account Update(Long id, Account obj) {
+		Account entity = repository.getOne(id);
+		
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Account entity, Account obj) {
+		entity.setTipeAccount(obj.getTipeAccount());
+		entity.setName(obj.getName());
+		entity.setCpf(obj.getCpf());
+		entity.setTransferLimit(obj.getTransferLimit());
+		
+	}
+
 
 }

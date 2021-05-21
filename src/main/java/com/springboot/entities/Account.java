@@ -26,7 +26,7 @@ public class Account implements Serializable {
 	private Integer tipeAccount;
 	private String name;
 	private Integer cpf;
-	public double transferLimit;
+	private double transferLimit;
 	protected double balance;
 	
 	//nao fica em loop entre pedido e o usuario
@@ -43,7 +43,7 @@ public class Account implements Serializable {
 		setTipeAccount(tipeAccount);
 		this.name = name;
 		this.cpf = cpf;
-		this.transferLimit = transferLimit;
+		this.setTransferLimit(transferLimit);
 		this.balance = balance;
 	}
 
@@ -108,6 +108,14 @@ public class Account implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public double getTransferLimit() {
+		return transferLimit;
+	}
+
+	public void setTransferLimit(double transferLimit) {
+		this.transferLimit = transferLimit;
 	}
 
 }
