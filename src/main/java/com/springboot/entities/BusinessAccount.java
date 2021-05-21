@@ -3,7 +3,7 @@ package com.springboot.entities;
 import com.springboot.entities.enums.TipeAccount;
 
 public class BusinessAccount extends Account{
-
+	
 	private static final long serialVersionUID = 1L;
 	private Integer cnpj;
 	private String socialReason;

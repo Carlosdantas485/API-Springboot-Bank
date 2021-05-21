@@ -33,6 +33,7 @@ public class Order implements Serializable {
 	private Account client;
 
 	public Order() {
+		super();
 	}
 
 	public Order(Long id, Instant moment, Account client) {
@@ -65,7 +66,7 @@ public class Order implements Serializable {
 	public void setClient(Account client) {
 		this.client = client;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
