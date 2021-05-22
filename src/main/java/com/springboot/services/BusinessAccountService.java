@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.entities.Account;
 import com.springboot.repositories.AccountRepository;
-import com.springboot.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class AccountService {
+public class BusinessAccountService {
 	
 	@Autowired
 	private AccountRepository repository;
@@ -22,7 +21,7 @@ public class AccountService {
 	
 	public Account findById(Long id) {
 		Optional<Account> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+		return obj.get();
 	}
 	
 	public Account insert(Account obj) {
@@ -34,7 +33,7 @@ public class AccountService {
 		
 	}
 	
-	public Account Update(Long id, Account obj) {
+	public Account Update(Long id,Account obj) {
 		Account entity = repository.getOne(id);
 		
 		updateData(entity, obj);

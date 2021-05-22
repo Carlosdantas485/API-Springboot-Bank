@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import com.springboot.entities.enums.TipeAccount;
 
 @Entity
-@Table(name = "tb_account")
-public class businessAccount implements Serializable{
+@Table(name = "tb_Accounts")
+public class BusinessAccount implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,10 +28,10 @@ public class businessAccount implements Serializable{
 	private double transferLimit;
 	protected double balance;
 
-	public businessAccount() {
+	public BusinessAccount() {
 	}
 
-	public businessAccount(Long id, TipeAccount tipeAccount, String name, Integer cpf, Integer cnpj,
+	public BusinessAccount(Long id, TipeAccount tipeAccount, String name, Integer cpf, Integer cnpj,
 			String socialReason, String fantasyName, double transferLimit, double balance) {
 		super();
 		this.id = id;
@@ -113,6 +113,16 @@ public class businessAccount implements Serializable{
 	public double getBalance() {
 		return balance;
 	}
+	
+	public double deposit( double amount) {
+		return balance += amount;
+	
+	}
+	
+	public double withdraw( double amount) {
+		return balance -= amount;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -130,7 +140,7 @@ public class businessAccount implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		businessAccount other = (businessAccount) obj;
+		BusinessAccount other = (BusinessAccount) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

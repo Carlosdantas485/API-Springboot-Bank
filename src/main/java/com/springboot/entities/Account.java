@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import com.springboot.entities.enums.TipeAccount;
 
 @Entity
-@Table(name = "tb_account")
+@Table(name = "tb_Accounts")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,19 +22,24 @@ public class Account implements Serializable {
 	private Integer tipeAccount;
 	private String name;
 	private Integer cpf;
+	private Integer cnpj;
+	private String socialReason;
+	private String fantasyName;
 	private double transferLimit;
 	protected double balance;
 
 	public Account() {
 	}
 
-	public Account(Long id, TipeAccount tipeAccount, String name, Integer cpf, Integer cnpj, String socialReason,
-			String fantasyName, double transferLimit, double balance) {
-		super();
+	public Account(Long id, TipeAccount tipeAccount, String name, Integer cpf, Integer cnpj,
+			String socialReason, String fantasyName, double transferLimit, double balance) {
 		this.id = id;
 		setTipeAccount(tipeAccount);
 		this.name = name;
 		this.cpf = cpf;
+		this.cnpj = cnpj;
+		this.socialReason = socialReason;
+		this.fantasyName = fantasyName;
 		this.transferLimit = 500.0;
 		this.balance = balance;
 	}
@@ -71,6 +76,31 @@ public class Account implements Serializable {
 	public void setCpf(Integer cpf) {
 		this.cpf = cpf;
 	}
+	
+	public Integer getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(Integer cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getSocialReason() {
+		return socialReason;
+	}
+
+	public void setSocialReason(String socialReason) {
+		this.socialReason = socialReason;
+	}
+
+	public String getFantasyName() {
+		return fantasyName;
+	}
+
+	public void setFantasyName(String fantasyName) {
+		this.fantasyName = fantasyName;
+	}
+
 
 	public double getTransferLimit() {
 		return transferLimit;
@@ -83,12 +113,20 @@ public class Account implements Serializable {
 	public double getBalance() {
 		return balance;
 	}
+	
+	public double deposit( double amount) {
+		return balance += amount;
+	}
+	
+	public double withdraw( double amount) {
+		return balance -= amount;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -101,15 +139,20 @@ public class Account implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", tipeAccount=" + tipeAccount + ", name=" + name + ", cpf=" + cpf
-				+ ", transferLimit=" + transferLimit + ", balance=" + balance + "]";
+		return "Account [id=" + id + ", tipeAccount=" + tipeAccount + ", name=" + name + ", cpf=" + cpf + ", cnpj="
+				+ cnpj + ", socialReason=" + socialReason + ", fantasyName=" + fantasyName + ", transferLimit="
+				+ transferLimit + ", balance=" + balance + "]";
 	}
 
+	
 }

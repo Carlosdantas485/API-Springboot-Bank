@@ -16,45 +16,44 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.springboot.entities.Account;
-import com.springboot.services.AccountService;
+import com.springboot.services.BusinessAccountService;
 
 @RestController
-@RequestMapping(value = "/account/juridic")
+@RequestMapping(value = "/accountjuridicperson")
 public class BusinessAccountResource {
-	
+
 	@Autowired
-	private AccountService service;
-	
+	private BusinessAccountService service;
+
 	@GetMapping
 	public ResponseEntity<List<Account>> findAll() {
-		
 		List<Account> list = service.findAll();
 		return ResponseEntity.ok().body(list);
-	}	
-	
+	}
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Account> findById(@PathVariable Long id) {
 		Account obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Account> insert(@RequestBody Account obj) {
 		obj = service.insert(obj);
-		URI	uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delet(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Account> Update(@PathVariable Long id, @RequestBody Account obj ) {
+	public ResponseEntity<Account> Update(@PathVariable Long id, @RequestBody Account obj) {
 		obj = service.Update(id, obj);
 		return ResponseEntity.ok().body(obj);
-	
+
 	}
 }
