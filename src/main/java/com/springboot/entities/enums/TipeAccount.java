@@ -23,7 +23,7 @@ public enum TipeAccount {
 				return value;
 			}
 		}
-		throw new  IllegalArgumentException("Invalid OrderStatus code");
+		throw new IllegalArgumentException("Invalid OrderStatus code");
 	}
 	
 }

@@ -19,8 +19,8 @@ import com.springboot.entities.Account;
 import com.springboot.services.AccountService;
 
 @RestController
-@RequestMapping(value = "/account")
-public class AccountResource {
+@RequestMapping(value = "/account/juridic")
+public class BusinessAccountResource {
 	
 	@Autowired
 	private AccountService service;
